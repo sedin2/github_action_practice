@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: /
+  - source: /BE
     destination: /opt/action-practice
 permissions:
   - object: /opt/action-practice/
