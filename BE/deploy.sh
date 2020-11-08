@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-REPOSITORY=/BE/opt/action-practice
+REPOSITORY=/opt/action-practice
 cd $REPOSITORY
 
 APP_NAME=github_action_practice

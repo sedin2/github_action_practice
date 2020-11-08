@@ -2,10 +2,10 @@ version: 0.0
 os: linux
 
 files:
-  - source: /BE
-    destination: /BE/opt/action-practice
+  - source: /
+    destination: /opt/action-practice
 permissions:
-  - object: /BE/opt/action-practice/
+  - object: /opt/action-practice/
     owner: ubuntu
     group: ubuntu
     mode: 755
