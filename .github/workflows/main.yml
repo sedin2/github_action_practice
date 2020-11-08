@@ -45,7 +45,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://deploy-practice-s3/$PROJECT_NAME/$GITHUB_SHA.zip
+        run: aws s3 cp --region ap-northeast-2 ./BE/$GITHUB_SHA.zip s3://deploy-practice-s3/$PROJECT_NAME/$GITHUB_SHA.zip
 
       - name: Code Deploy
-        run: aws deploy create-deployment --application-name action-practice --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name action-practice --s3-location bucket=deploy-practice-s3,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
+        run: aws deploy create-deployment --application-name action-practice --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name action-practice --s3-location bucket=deploy-practice-s3,bundleType=zip,key=$PROJECT_NAME/BE/$GITHUB_SHA.zip
