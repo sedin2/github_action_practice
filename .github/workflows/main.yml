@@ -26,15 +26,18 @@ jobs:
           java-version: 1.8
 
       - name: Grant execute permission for gradlew
-        run: chmod +x ./BE/gradlew
+        run: chmod +x gradlew
+        working-directory: ./BE
         shell: bash
 
       - name: Build with Gradle
-        run: ./BE/gradlew build
+        run: ./gradlew build
+        working-directory: ./BE
         shell: bash
 
       - name: Make zip file
-        run: zip -qq -r ./BE/$GITHUB_SHA.zip .
+        run: zip -r ./$GITHUB_SHA.zip .
+        working-directory: ./BE
         shell: bash
 
       - name: Configure AWS credentials
@@ -45,7 +48,8 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./BE/$GITHUB_SHA.zip s3://deploy-practice-s3/$PROJECT_NAME/$GITHUB_SHA.zip
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://deploy-practice-s3/$PROJECT_NAME/$GITHUB_SHA.zip
+        working-directory: ./BE
 
       - name: Code Deploy
         run: aws deploy create-deployment --application-name action-practice --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name action-practice --s3-location bucket=deploy-practice-s3,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
